@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Locadora de Veículos</title>
+    <title>Login - LoCCar</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
@@ -12,11 +12,14 @@
             display: flex;
             min-height: 100vh;
             flex-direction: column;
-            background-color: #f5f5f5;
+            background-color: #e3f2fd; /* Um azul bem claro para o fundo */
         }
-
         main {
             flex: 1 0 auto;
+        }
+        .login-card {
+            padding: 20px;
+            margin-top: 5vh;
         }
     </style>
 </head>
@@ -24,9 +27,15 @@
 <body>
     <main>
         <div class="container">
-            <div class="row" style="margin-top: 10vh;">
-                <div class="col s12 m6 offset-m3">
-                    <div class="card">
+            <div class="row">
+                <div class="col s12 m8 offset-m2 l6 offset-l3">
+                    
+                    <div class="center-align" style="padding-top: 40px; padding-bottom: 20px;">
+                        <img src="/locadora_carros/VIEW/imagens/teto.GIF" style="height: 80px; vertical-align: middle; margin-right: 15px;">
+                        <span style="font-size: 3rem; font-weight: 500; vertical-align: middle; color: #0D47A1;">LoCCar</span>
+                    </div>
+
+                    <div class="card login-card">
                         <div class="card-content">
                             <span class="card-title center-align">Acesso ao Sistema de Locação de Veículos</span>
                             <form action="opLogin.php" method="POST">
@@ -40,8 +49,8 @@
                                     <input id="senha" type="password" name="senha" class="validate" required>
                                     <label for="senha">Senha</label>
                                 </div>
-                                <div class="center-align">
-                                    <button class="btn waves-effect waves-light light-blue darken-4" type="submit">
+                                <div class="center-align" style="margin-top: 20px;">
+                                    <button class="btn waves-effect waves-light light-blue darken-4" type="submit" style="width: 100%;">
                                         Entrar
                                         <i class="material-icons right">send</i>
                                     </button>
@@ -53,11 +62,6 @@
             </div>
         </div>
     </main>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/locadora_carros/VIEW/menus/footer.php'; ?>
 </body>
-
-<?php include_once $_SERVER['DOCUMENT_ROOT'] . '/locadora_carros/VIEW/menus/footer.php'; ?>
-
 </html>

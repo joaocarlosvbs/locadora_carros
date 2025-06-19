@@ -20,7 +20,7 @@ if (!isset($_SESSION['login'])) {
         <div class="nav-wrapper container">
 
             <a href="/locadora_carros/VIEW/menus/home.php" class="brand-logo">
-                <img src="/locadora_carros/VIEW/imagens/teto.GIF" style="height: 80px; vertical-align: middle; margin-right: px;">
+                <img src="/locadora_carros/VIEW/imagens/teto.GIF" style="height: 80px; vertical-align: middle; ">
                 <span style="vertical-align: middle;">LoCCar</span>
             </a>
 
@@ -28,12 +28,12 @@ if (!isset($_SESSION['login'])) {
             
             <ul class="right hide-on-med-and-down">
                 <li><a href="/locadora_carros/VIEW/menus/home.php" style="font-size: 2em;">🏠</a></li>
-                <li><a href="/locadora_carros/VIEW/cliente/lstCliente.php" style="font-size: 1.5em;">Clientes</a></li>
-                <li><a href="/locadora_carros/VIEW/veiculo/lstVeiculo.php" style="font-size: 1.5em;">Veículos</a></li>
-                <li><a href="/locadora_carros/VIEW/locacao/lstLocacao.php" style="font-size: 1.5em;">Locações</a></li>
-                <li><a href="/locadora_carros/VIEW/usuarios/lstUsuario.php" style="font-size: 1.5em;">Usuários</a></li>
-                <li><a href="/locadora_carros/VIEW/relatorios/menu_relatorios.php" style="font-size: 1.5em;">Relatórios</a></li>
-                <li><a href="/locadora_carros/VIEW/menus/logout.php" style="font-size: 1.5em;">Logout</a></li>
+                <li><a href="/locadora_carros/VIEW/cliente/lstCliente.php" style="font-size: 1.3em;">Clientes</a></li>
+                <li><a href="/locadora_carros/VIEW/veiculo/lstVeiculo.php" style="font-size: 1.3em;">Veículos</a></li>
+                <li><a href="/locadora_carros/VIEW/locacao/lstLocacao.php" style="font-size: 1.3em;">Locações</a></li>
+                <li><a href="/locadora_carros/VIEW/usuarios/lstUsuario.php" style="font-size: 1.3em;">Usuários</a></li>
+                <li><a href="/locadora_carros/VIEW/relatorios/menu_relatorios.php" style="font-size: 1.3em;">Relatórios</a></li>
+                <li><a href="/locadora_carros/VIEW/menus/logout.php" style="font-size: 1.3em;">Sair</a></li>
             </ul>
         </div>
     </nav>
@@ -45,7 +45,7 @@ if (!isset($_SESSION['login'])) {
         <li><a href="/locadora_carros/VIEW/locacao/lstLocacao.php">Locações</a></li>
         <li><a href="/locadora_carros/VIEW/usuarios/lstUsuario.php">Usuários</a></li>
         <li><a href="/locadora_carros/VIEW/relatorios/menu_relatorios.php">Relatórios</a></li>
-        <li><a href="/locadora_carros/VIEW/menus/logout.php">Logout</a></li>
+        <li><a href="/locadora_carros/VIEW/menus/logout.php">Sair</a></li>
     </ul>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
