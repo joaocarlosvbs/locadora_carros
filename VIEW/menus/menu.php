@@ -16,18 +16,18 @@ if (!isset($_SESSION['login'])) {
 </head>
 
 <body>
-    <nav class="light-blue darken-4" style="height: 200px; line-height: 80px;">
+    <nav class="light-blue darken-4" style="height: 100px; line-height: 80px;">
         <div class="nav-wrapper container">
 
             <a href="/locadora_carros/VIEW/menus/home.php" class="brand-logo">
-                <img src="/locadora_carros/VIEW/imagens/teto.GIF" style="height: 200px; vertical-align: middle; margin-right: 10px;">
+                <img src="/locadora_carros/VIEW/imagens/teto.GIF" style="height: 80px; vertical-align: middle; margin-right: px;">
                 <span style="vertical-align: middle;">LoCCar</span>
             </a>
 
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             
             <ul class="right hide-on-med-and-down">
-                <li><a href="/locadora_carros/VIEW/menus/home.php" style="font-size: 1.2em;">🏠</a></li>
+                <li><a href="/locadora_carros/VIEW/menus/home.php" style="font-size: 2em;">🏠</a></li>
                 <li><a href="/locadora_carros/VIEW/cliente/lstCliente.php" style="font-size: 1.5em;">Clientes</a></li>
                 <li><a href="/locadora_carros/VIEW/veiculo/lstVeiculo.php" style="font-size: 1.5em;">Veículos</a></li>
                 <li><a href="/locadora_carros/VIEW/locacao/lstLocacao.php" style="font-size: 1.5em;">Locações</a></li>
