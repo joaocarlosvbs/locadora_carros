@@ -46,7 +46,7 @@ $lstVeiculos = $dalVeiculo->Select($termoBusca);
                 <tr>
                     <td>
                         <?php if ($veiculo->getImagem()) { ?>
-                            <img src="../imagens/<?php echo $veiculo->getImagem(); ?>" alt="Foto do Veículo" width="100">
+                            <img src="../imagens/<?php echo $veiculo->getImagem(); ?>" alt="Foto do Veículo" width="200">
                         <?php } else { ?>
                             Sem Foto
                         <?php } ?>
