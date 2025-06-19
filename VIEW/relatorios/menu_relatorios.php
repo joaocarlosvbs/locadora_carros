@@ -5,6 +5,7 @@
     <div class="collection">
         <a href="rel_veiculos_status.php" class="collection-item">Relatório de Veículos por Status</a>
         <a href="rel_locacoes_cliente.php" class="collection-item">Relatório de Locações por Cliente</a>
+        <a href="rel_financeiro.php" class="collection-item">Relatório Financeiro Geral</a>
     </div>
 </div>
 

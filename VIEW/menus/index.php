@@ -28,7 +28,7 @@
                 <div class="col s12 m6 offset-m3">
                     <div class="card">
                         <div class="card-content">
-                            <span class="card-title center-align">Acesso ao Sistema</span>
+                            <span class="card-title center-align">Acesso ao Sistema de Locação de Veículos</span>
                             <form action="opLogin.php" method="POST">
                                 <div class="input-field">
                                     <i class="material-icons prefix">person</i>

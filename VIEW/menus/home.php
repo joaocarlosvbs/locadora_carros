@@ -1,7 +1,7 @@
 <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/locadora_carros/VIEW/menus/menu.php'; ?>
 
 <div class="container">
-    <h3 class="center-align">Bem-vindo ao Sistema de Locadora de Veículos</h3>
+    <h3 class="center-align">Bem-vindo ao Sistema de Locação de Veículos</h3>
     <div class="row center-align" style="margin-top: 50px;">
         <div class="col s12 m4">
             <div class="card">

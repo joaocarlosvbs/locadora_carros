@@ -7,26 +7,28 @@ $dados = $dalVeiculo->getCountByStatus();
 ?>
 
 <div class="container">
-    <h4 class="center-align">Relatório de Veículos por Status</h4>
-    <p class="center-align">Este relatório mostra a quantidade total de veículos agrupados por sua disponibilidade.</p>
-    <table class="striped centered">
-        <thead>
-            <tr>
-                <th>Status</th>
-                <th>Quantidade de Veículos</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($dados as $linha) { ?>
+    <div class="card-panel">
+        <h4 class="center-align">Relatório de Veículos por Status</h4>
+        <p class="center-align">Este relatório mostra a quantidade total de veículos agrupados por sua disponibilidade.</p>
+        <table class="striped centered highlight">
+            <thead>
                 <tr>
-                    <td><?php echo ($linha['status'] == 'D') ? 'Disponível' : 'Indisponível'; ?></td>
-                    <td><?php echo $linha['total']; ?></td>
+                    <th>Status</th>
+                    <th>Quantidade de Veículos</th>
                 </tr>
-            <?php } ?>
-        </tbody>
-    </table>
-    <div class="center-align" style="margin-top: 2rem;">
-        <button class="btn waves-effect waves-light blue" type="button" onclick="JavaScript:location.href='menu_relatorios.php'">Voltar</button>
+            </thead>
+            <tbody>
+                <?php foreach ($dados as $linha) { ?>
+                    <tr>
+                        <td><?php echo ($linha['status'] == 'D') ? 'Disponível' : 'Indisponível (Em Locação)'; ?></td>
+                        <td><?php echo $linha['total']; ?></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+        <div class="center-align" style="margin-top: 2rem;">
+            <button class="btn waves-effect waves-light blue" type="button" onclick="JavaScript:location.href='menu_relatorios.php'">Voltar</button>
+        </div>
     </div>
 </div>
 

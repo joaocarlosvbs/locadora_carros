@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col s12">
             <h3 class="center-align">Novo Cliente</h3>
-                <form action="opInsCliente.php" method="POST" class="col s12">
+                <form action="opInsCliente.php" method="POST" class="col s12" id="form-cliente">
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="nome" name="nome" type="text" class="validate" required>
@@ -13,7 +13,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input id="cpf" name="cpf" type="text" class="validate" required>
+                            <input id="cpf" name="cpf" type="text" class="validate cpf" required>
                             <label for="cpf">CPF</label>
                         </div>
                         <div class="input-field col s6">
@@ -43,3 +43,5 @@
         </div>
     </div>
 </div>
+
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . '/locadora_carros/VIEW/menus/footer.php';?>

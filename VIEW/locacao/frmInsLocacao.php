@@ -7,7 +7,7 @@ $dalCliente = new \DAL\ClienteDAL();
 $lstClientes = $dalCliente->Select();
 
 $dalVeiculo = new \DAL\VeiculoDAL();
-$lstVeiculos = $dalVeiculo->SelectByStatus('D'); // Apenas veículos disponíveis
+$lstVeiculos = $dalVeiculo->SelectByStatus('D');
 ?>
 
 <div class="container">
@@ -25,11 +25,11 @@ $lstVeiculos = $dalVeiculo->SelectByStatus('D'); // Apenas veículos disponívei
                     <label>Cliente</label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <select name="veiculo_id" required>
-                        <option value="" disabled selected>Escolha o Veículo</option>
+                    <select id="veiculo" name="veiculo_id" required>
+                        <option value="" data-valor="0" disabled selected>Escolha o Veículo</option>
                         <?php foreach ($lstVeiculos as $veiculo) { ?>
-                            <option value="<?php echo $veiculo->getId(); ?>">
-                                <?php echo $veiculo->getModelo() . ' - ' . $veiculo->getMarca() . ' (' . $veiculo->getPlaca() . ')'; ?>
+                            <option value="<?php echo $veiculo->getId(); ?>" data-valor="<?php echo $veiculo->getValorDiaria(); ?>">
+                                <?php echo $veiculo->getModelo() . ' - R$ ' . number_format($veiculo->getValorDiaria(), 2, ',', '.'); ?>/dia
                             </option>
                         <?php } ?>
                     </select>
@@ -37,19 +37,83 @@ $lstVeiculos = $dalVeiculo->SelectByStatus('D'); // Apenas veículos disponívei
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12">
-                    <input type="text" class="datepicker" name="data_locacao" required>
+                <div class="input-field col s12 m6">
+                    <input type="text" class="datepicker" id="data_locacao" name="data_locacao" required>
                     <label>Data da Locação</label>
                 </div>
+                <div class="input-field col s12 m6">
+                    <input type="text" class="datepicker" id="data_prev_devolucao" name="data_prev_devolucao" required>
+                    <label>Data Prevista de Devolução</label>
+                </div>
             </div>
+            
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <select name="nivel_tanque">
+                        <option value="Cheio" selected>Cheio</option>
+                        <option value="Meio Tanque">Meio Tanque</option>
+                        <option value="Vazio">Vazio</option>
+                    </select>
+                    <label>Nível do Tanque (Saída)</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <input type="number" step="0.01" id="valor_pago" name="valor_pago" value="0.00">
+                    <label>Valor Pago Antecipadamente (R$)</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12">
+                    <h5 class="center-align">Valor Total Estimado: <strong id="valor-total-display">R$ 0,00</strong></h5>
+                    <input type="hidden" id="valor_total" name="valor_total" value="0">
+                </div>
+            </div>
+
             <div class="center-align">
-                <button class="btn waves-effect waves-light green" type="submit">
-                    Registrar <i class="material-icons right">save</i>
-                </button>
-                 <button class="btn waves-effect waves-light blue" type="button" onclick="JavaScript:location.href='lstLocacao.php'">
-                    Voltar <i class="material-icons right">arrow_back</i>
-                </button>
+                <button class="btn waves-effect waves-light green" type="submit">Registrar</button>
+                <button class="btn waves-effect waves-light blue" type="button" onclick="JavaScript:location.href='lstLocacao.php'">Voltar</button>
             </div>
         </form>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Seleciona os elementos do formulário
+    const veiculoSelect = document.getElementById('veiculo');
+    const dataLocacaoInput = document.getElementById('data_locacao');
+    const dataDevolucaoInput = document.getElementById('data_prev_devolucao');
+    const valorTotalDisplay = document.getElementById('valor-total-display');
+    const valorTotalHidden = document.getElementById('valor_total');
+
+    function calcularTotal() {
+        const valorDiaria = parseFloat(veiculoSelect.options[veiculoSelect.selectedIndex].getAttribute('data-valor'));
+        
+        // Verifica se as datas são válidas
+        const dataInicio = M.Datepicker.getInstance(dataLocacaoInput).date;
+        const dataFim = M.Datepicker.getInstance(dataDevolucaoInput).date;
+
+        if (valorDiaria > 0 && dataInicio && dataFim && dataFim >= dataInicio) {
+            // Calcula a diferença em milissegundos e converte para dias
+            const diffTime = Math.abs(dataFim - dataInicio);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            const dias = diffDays === 0 ? 1 : diffDays; // Mínimo de 1 dia de locação
+
+            const total = dias * valorDiaria;
+            
+            valorTotalDisplay.textContent = 'R$ ' + total.toFixed(2).replace('.', ',');
+            valorTotalHidden.value = total.toFixed(2);
+        } else {
+            valorTotalDisplay.textContent = 'R$ 0,00';
+            valorTotalHidden.value = 0;
+        }
+    }
+
+    // Adiciona "escutadores" de eventos para recalcular quando algo mudar
+    veiculoSelect.addEventListener('change', calcularTotal);
+    dataLocacaoInput.addEventListener('change', calcularTotal);
+    dataDevolucaoInput.addEventListener('change', calcularTotal);
+});
+</script>
+
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . '/locadora_carros/VIEW/menus/footer.php'; ?>

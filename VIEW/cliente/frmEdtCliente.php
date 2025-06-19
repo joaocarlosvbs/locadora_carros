@@ -11,7 +11,8 @@ $cliente = $dalCliente->SelectById($id);
     <div class="row">
         <div class="col s12">
             <h3 class="center-align">Editar Cliente</h3>
-                <form action="opEdtCliente.php" method="POST" class="col s12">
+            <div class="card-panel">
+                <form action="opEdtCliente.php" method="POST" class="col s12" id="form-cliente">
                     <div class="row">
                         <div class="input-field col s12">
                             <input type="hidden" name="id" value="<?php echo $cliente->getId(); ?>">
@@ -26,7 +27,7 @@ $cliente = $dalCliente->SelectById($id);
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input id="cpf" name="cpf" type="text" class="validate" value="<?php echo $cliente->getCpf(); ?>" required>
+                            <input id="cpf" name="cpf" type="text" class="validate cpf" value="<?php echo $cliente->getCpf(); ?>" required>
                             <label for="cpf" class="active">CPF</label>
                         </div>
                         <div class="input-field col s6">
@@ -50,6 +51,9 @@ $cliente = $dalCliente->SelectById($id);
                         </button>
                     </div>
                 </form>
+            </div>
         </div>
     </div>
 </div>
+
+<?php include_once $_SERVER['DOCUMENT_ROOT'] . '/locadora_carros/VIEW/menus/footer.php'; ?>

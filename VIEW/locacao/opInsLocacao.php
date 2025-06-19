@@ -9,9 +9,24 @@ $locacao = new \MODEL\Locacao();
 $locacao->setClienteId((int)$_POST['cliente_id']);
 $locacao->setVeiculoId((int)$_POST['veiculo_id']);
 
-// Formatar data de 'dd-mm-yyyy' para 'Y-m-d' para o banco de dados
-$dataLocacao = \DateTime::createFromFormat('d-m-Y', $_POST['data_locacao']);
-$locacao->setDataLocacao($dataLocacao);
+// Formatar datas de 'yyyy-mm-dd' para o objeto DateTime
+$locacao->setDataLocacao(new \DateTime($_POST['data_locacao']));
+$locacao->setDataPrevDevolucao(new \DateTime($_POST['data_prev_devolucao']));
+
+// Novos campos
+$locacao->setValorTotal((float)$_POST['valor_total']);
+$locacao->setValorPago((float)$_POST['valor_pago']);
+$locacao->setNivelTanque($_POST['nivel_tanque']);
+
+// Lógica para status de pagamento
+if ($locacao->getValorPago() >= $locacao->getValorTotal() && $locacao->getValorTotal() > 0) {
+    $locacao->setStatusPagamento('Pago');
+} elseif ($locacao->getValorPago() > 0) {
+    $locacao->setStatusPagamento('Pago Parcialmente');
+} else {
+    $locacao->setStatusPagamento('Pendente');
+}
+
 
 $dalLocacao = new \DAL\LocacaoDAL();
 $dalLocacao->Insert($locacao);
