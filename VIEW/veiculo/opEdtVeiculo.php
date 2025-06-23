@@ -10,10 +10,10 @@ $veiculo->setAno((int)$_POST['ano']);
 $veiculo->setPlaca($_POST['placa']);
 $veiculo->setValorDiaria((float)$_POST['valor_diaria']);
 $veiculo->setStatus($_POST['status']);
-$veiculo->setImagem($_POST['imagem_antiga']); // Mantém a imagem antiga por padrão
+$veiculo->setImagem($_POST['imagem_antiga']);
 
 if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
-    // Apaga a imagem antiga se existir
+    
     if (!empty($_POST['imagem_antiga'])) {
         $caminho_antigo = $_SERVER['DOCUMENT_ROOT'] . '/locadora_carros/VIEW/imagens/' . $_POST['imagem_antiga'];
         if (file_exists($caminho_antigo)) {

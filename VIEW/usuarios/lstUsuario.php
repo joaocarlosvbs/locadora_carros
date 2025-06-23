@@ -42,7 +42,7 @@ $lstUsuarios = $dalUsuario->Select();
 <script>
     function remover(id, user) {
         if (confirm('Deseja realmente excluir o usuário ' + user + '?')) {
-             // Lógica para não deixar excluir o próprio usuário logado
+            
             let usuarioLogado = "<?php echo $_SESSION['login']; ?>";
             if (user === usuarioLogado) {
                 alert("Você não pode excluir o seu próprio usuário.");

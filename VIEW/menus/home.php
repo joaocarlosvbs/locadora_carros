@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-content">
                     <i class="material-icons large light-blue-text text-darken-4">people</i>
-                    <p>Gerencie os clientes da locadora.</p>
+                    <p>Gerenciamento de clientes.</p>
                 </div>
                 <div class="card-action">
                     <a href="/locadora_carros/VIEW/cliente/lstCliente.php">Ir para Clientes</a>
@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-content">
                     <i class="material-icons large light-blue-text text-darken-4">directions_car</i>
-                    <p>Cadastre e administre a frota de veículos.</p>
+                    <p>Cadastro e administração da frota de veículos.</p>
                 </div>
                 <div class="card-action">
                     <a href="/locadora_carros/VIEW/veiculo/lstVeiculo.php">Ir para Veículos</a>
@@ -29,7 +29,7 @@
             <div class="card">
                 <div class="card-content">
                     <i class="material-icons large light-blue-text text-darken-4">assignment</i>
-                    <p>Controle as locações de veículos.</p>
+                    <p>Controle das locações de veículos.</p>
                 </div>
                 <div class="card-action">
                     <a href="/locadora_carros/VIEW/locacao/lstLocacao.php">Ir para Locações</a>

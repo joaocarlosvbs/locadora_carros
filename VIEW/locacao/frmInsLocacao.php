@@ -52,7 +52,7 @@ $lstVeiculos = $dalVeiculo->SelectByStatus('D');
                     <select name="nivel_tanque">
                         <option value="Cheio" selected>Cheio</option>
                         <option value="Meio Tanque">Meio Tanque</option>
-                        <option value="Vazio">Vazio</option>
+                        <option value="Vazio">Vazio (10KM)</option>
                     </select>
                     <label>Nível do Tanque (Saída)</label>
                 </div>
@@ -89,12 +89,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function calcularTotal() {
         const valorDiaria = parseFloat(veiculoSelect.options[veiculoSelect.selectedIndex].getAttribute('data-valor'));
         
-        // Verifica se as datas são válidas
         const dataInicio = M.Datepicker.getInstance(dataLocacaoInput).date;
         const dataFim = M.Datepicker.getInstance(dataDevolucaoInput).date;
 
         if (valorDiaria > 0 && dataInicio && dataFim && dataFim >= dataInicio) {
-            // Calcula a diferença em milissegundos e converte para dias
+
             const diffTime = Math.abs(dataFim - dataInicio);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             const dias = diffDays === 0 ? 1 : diffDays; // Mínimo de 1 dia de locação
@@ -109,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Adiciona "escutadores" de eventos para recalcular quando algo mudar
     veiculoSelect.addEventListener('change', calcularTotal);
     dataLocacaoInput.addEventListener('change', calcularTotal);
     dataDevolucaoInput.addEventListener('change', calcularTotal);

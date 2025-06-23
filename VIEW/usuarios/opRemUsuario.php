@@ -5,7 +5,6 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/locadora_carros/DAL/usuario.php';
 $id = $_GET['id'];
 $dalUsuario = new \DAL\UsuarioDAL();
 
-// Impede que o usuário se auto-delete
 $usuarioParaDeletar = $dalUsuario->SelectById($id);
 if ($usuarioParaDeletar->getUsuario() != $_SESSION['login']) {
     $dalUsuario->Delete($id);

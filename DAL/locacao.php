@@ -138,8 +138,6 @@ class LocacaoDAL {
         return $result;
     }
 
-    // --- MÉTODOS PARA RELATÓRIOS ---
-
     public function getCountByClient() {
         $sql = "SELECT c.nome, COUNT(l.id) as total 
                 FROM locacao l 

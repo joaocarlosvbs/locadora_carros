@@ -46,7 +46,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     
     <script>
-        // [2. ADIÇÃO] - Função para validar o algoritmo do CPF
         function validarCPF(cpf) {
             cpf = cpf.replace(/[^\d]+/g, '');
             if (cpf == '' || cpf.length != 11 || /^(\d)\1{10}$/.test(cpf)) return false;
@@ -64,7 +63,6 @@
         }
 
         $(document).ready(function () {
-            // Seus scripts de inicialização
             $('.sidenav').sidenav();
             $('select').formSelect();
             $('.datepicker').datepicker({
@@ -75,14 +73,12 @@
             $('.modal').modal();
             $('.fixed-action-btn').floatingActionButton();
 
-            // [3. ADIÇÃO] - Aplica a máscara de CPF em campos com a classe 'cpf'
             $('.cpf').mask('000.000.000-00', {reverse: true});
 
-            // [4. ADIÇÃO] - Adiciona o evento de validação ao formulário
             $('#form-cliente').submit(function(event) {
                 var cpfInput = $('#cpf').val();
                 if (cpfInput && !validarCPF(cpfInput)) {
-                    event.preventDefault(); // Impede o envio do formulário
+                    event.preventDefault();
                     M.toast({html: 'CPF inválido! Verifique o número digitado.', classes: 'red darken-2'});
                 }
             });
