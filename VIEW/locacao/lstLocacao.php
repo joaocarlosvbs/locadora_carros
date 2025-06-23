@@ -67,8 +67,8 @@ $lstLocacoes = $dalLocacao->Select();
                         </td>
                         <td>
                             <?php if (!$locacao->getDataDevolucao()) { ?>
-                                <a class="btn-small waves-effect waves-light purple" onclick="devolver(<?php echo $locacao->getId(); ?>)">
-                                    Devolver
+                                <a class="btn-small waves-effect waves-light purple" href="frmDevolucao.php?id=<?php echo $locacao->getId(); ?>">
+                                 Devolver
                                 </a>
                             <?php } ?>
                         </td>

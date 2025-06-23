@@ -12,7 +12,7 @@
             display: flex;
             min-height: 100vh;
             flex-direction: column;
-            background-color: #e3f2fd; /* Um azul bem claro para o fundo */
+            background-color: #e3f2fd;
         }
         main {
             flex: 1 0 auto;

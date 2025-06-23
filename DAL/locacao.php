@@ -51,34 +51,41 @@ class LocacaoDAL {
     }
 
     public function SelectById(int $id) {
-        $sql = "SELECT * FROM locacao WHERE id=?;";
-        $con = Conexao::conectar();
-        $query = $con->prepare($sql);
-        $query->execute([$id]);
-        $linha = $query->fetch(\PDO::FETCH_ASSOC);
-        $con = Conexao::desconectar();
-        
-        $locacao = new \MODEL\Locacao();
-        if ($linha) {
-            $locacao->setId((int)$linha['id']);
-            $locacao->setClienteId((int)$linha['cliente_id']);
-            $locacao->setVeiculoId((int)$linha['veiculo_id']);
-            if (!empty($linha['data_locacao'])) {
-                $locacao->setDataLocacao(new \DateTime($linha['data_locacao']));
-            }
-             if (!empty($linha['data_prev_devolucao'])) {
-                $locacao->setDataPrevDevolucao(new \DateTime($linha['data_prev_devolucao']));
-            }
-            if (!empty($linha['data_devolucao'])) {
-                $locacao->setDataDevolucao(new \DateTime($linha['data_devolucao']));
-            }
-            $locacao->setValorTotal((float)$linha['valor_total']);
-            $locacao->setValorPago((float)$linha['valor_pago']);
-            $locacao->setStatusPagamento((string)$linha['status_pagamento']);
-            $locacao->setNivelTanque((string)$linha['nivel_tanque']);
+    $sql = "SELECT l.*, c.nome as nome_cliente 
+            FROM locacao l
+            INNER JOIN cliente c ON l.cliente_id = c.id
+            WHERE l.id = ?;";
+
+    $con = Conexao::conectar();
+    $query = $con->prepare($sql);
+    $query->execute([$id]);
+    $linha = $query->fetch(\PDO::FETCH_ASSOC);
+    $con = Conexao::desconectar();
+    
+    $locacao = new \MODEL\Locacao();
+    if ($linha) {
+        $locacao->setId((int)$linha['id']);
+        $locacao->setClienteId((int)$linha['cliente_id']);
+        $locacao->setVeiculoId((int)$linha['veiculo_id']);
+
+        $locacao->setNomeCliente((string)$linha['nome_cliente']);
+
+        if (!empty($linha['data_locacao'])) {
+            $locacao->setDataLocacao(new \DateTime($linha['data_locacao']));
         }
-        return $locacao;
+        if (!empty($linha['data_prev_devolucao'])) {
+            $locacao->setDataPrevDevolucao(new \DateTime($linha['data_prev_devolucao']));
+        }
+        if (!empty($linha['data_devolucao'])) {
+            $locacao->setDataDevolucao(new \DateTime($linha['data_devolucao']));
+        }
+        $locacao->setValorTotal((float)$linha['valor_total']);
+        $locacao->setValorPago((float)$linha['valor_pago']);
+        $locacao->setStatusPagamento((string)$linha['status_pagamento']);
+        $locacao->setNivelTanque((string)$linha['nivel_tanque']);
     }
+    return $locacao;
+}
 
     public function Insert(\MODEL\Locacao $locacao) {
         $sql = "INSERT INTO locacao (cliente_id, veiculo_id, data_locacao, data_prev_devolucao, valor_total, valor_pago, status_pagamento, nivel_tanque) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
@@ -137,8 +144,6 @@ class LocacaoDAL {
         $con = Conexao::desconectar();
         return $result;
     }
-
-    // --- MÉTODOS PARA RELATÓRIOS ---
 
     public function getCountByClient() {
         $sql = "SELECT c.nome, COUNT(l.id) as total 
